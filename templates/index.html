@@ -12,17 +12,25 @@
 <title> My Web App </title>
 <body>
   <h1> Hello World </h1>
-  <script>
-    if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-    request.setRequestHeader("Service-Worker-Allowed", "/");
-    navigator.serviceWorker.register("/static/sw.js", { scope: './' })
-        .then((reg) => {
-          console.log('Service worker registered.', reg);
-        });
-  })
+
+  <script type="text/javascript">
+  if ('serviceWorker' in navigator) {
+     // we are checking here to see if the browser supports the  service worker api
+  window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('Service Worker registration was successful with scope: ', registration.scope);
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
   }
+
   </script>
+
 </body>
+
+
 
 </html>
