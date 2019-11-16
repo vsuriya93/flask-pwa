@@ -18,5 +18,12 @@ def sw():
     print (os.getcwd())
     return app.send_static_file('sw.js')
 
+@app.route('/user_login',methods=['POST'])
+def user_login():
+    if request.method=='POST':
+        username = request.form['username']
+        password = request.form['password']
+        return str(username)+'\t'+password
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
